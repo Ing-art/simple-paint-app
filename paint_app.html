@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta view="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Canvas</title>
+        <link rel="stylesheet" type="text/css" href="css/style47.css">
+        <script src="js/javascript.js"></script>
+    </head>
+    <body>    
+        <main>
+            <h1 class="title">Canvas</h1>
+            <br>    
+            <div class="selector">
+                <label class="center">Select color:</label>
+                <input class="center" id="colorselector" type="color" value="#FFFFFF">
+            </div>
+            <div>
+                <button class="center" onclick="erase()">Delete</button>
+            </div>
+        <div class="canvas flex-container" id="canvas">
+        </div>
+    </main>
+        <script>
+            var canvas = document.getElementById('canvas'); 
+            var cols = 100; //cols of the canvas
+            var rows = 10; // rows of the canvas
+            var totalSquares = cols*rows;        
+            var toggle = false;
+
+            for(let i=0;i<totalSquares;i++){ // creates a canvas
+                var square = document.createElement('div');
+                square.className = 'canvas-square';
+                canvas.appendChild(square);
+                square.onmouseover = function(){            
+                        let colorIt=document.getElementById('colorselector').value;
+                        if(!toggle) { 
+                            paint(this,colorIt)
+                            canvas.onclick = function(){
+                                toggle =!toggle;//function toggle
+                                            };
+                        } 
+                    } 
+            }    
+            function erase(){
+                var delAll = document.getElementsByClassName('canvas-square');
+                var n = delAll.length; //gets the number of elements
+
+                for(i=0;i<=n;i++){
+                    paint(delAll[i],"#FFFFFF");
+                }         
+            }
+        </script>
+    </body>
+
+</html>
